@@ -50,7 +50,7 @@ class App extends Component {
     };
 
     return (
-      <div className="App">
+      <div className="App" data-test="appComponent">
         <Header />
         <section className="main">
           <Headline
@@ -60,9 +60,9 @@ class App extends Component {
           />
           <Button {...configButton} />
           <div>
-            {posts.map(post => {
+            {posts.map((post, index) => {
               return (
-                <ListItem key={post.id} title={post.title} desc={post.body} />
+                <ListItem key={index} title={post.title} desc={post.body} />
               );
             })}
           </div>
