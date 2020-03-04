@@ -32,16 +32,33 @@ const propTypes = {
   )
 };
 
+const initialState = {
+  hideBtn: false
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.state = { ...initialState };
   }
 
   fetch = () => {
     this.props.fetchPosts();
+    this.exampleMethod_updatesState();
   };
 
+  exampleMethod_updatesState = () => {
+    const { hideBtn } = this.state;
+    this.setState({ hideBtn: !hideBtn });
+  };
+
+  exampleMethod_returnsValue(number) {
+    return number + 1;
+  }
+
   render() {
+    const { hideBtn } = this.state;
     const { posts } = this.props;
 
     const configButton = {
@@ -58,7 +75,7 @@ class App extends Component {
             desc="Click the button to render posts"
             tempArr={tempArr}
           />
-          <Button {...configButton} />
+          {!hideBtn && <Button {...configButton} />}
           <div>
             {posts.map((post, index) => {
               return (
